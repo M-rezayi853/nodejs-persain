@@ -37,6 +37,37 @@ class DashboardController extends controller {
     }
   }
 
+  // async pay(req, res, next) {
+  //   try {
+  //     let params = {
+  //       MerchantID: '6cded376-3063-11e9-a98e-005056a205be',
+  //       Amount: req.body.amount,
+  //       CallbackURL: 'http://localhost:3000/paycallback',
+  //       Description: 'افزایش اعتبار حساب کاربری ',
+  //     }
+
+  //     const response = await axios.post(
+  //       'https://www.zarinpal.com/pg/rest/WebGate/PaymentRequest.json',
+  //       params
+  //     )
+  //     // console.log(response)
+
+  //     if (response.data.Status == 100) {
+  //       let newPayment = new Payment({
+  //         user: req.user.id,
+  //         amount: req.body.amount,
+  //         resnumber: response.data.Authority,
+  //       })
+  //       await newPayment.save()
+  //       res.redirect(
+  //         `https://www.zarinpal.com/pg/StartPay/${response.data.Authority}`
+  //       )
+  //     } else res.redirect('/dashboard')
+  //   } catch (err) {
+  //     next(err)
+  //   }
+  // }
+
   async pay(req, res, next) {
     try {
       let params = {
@@ -50,6 +81,8 @@ class DashboardController extends controller {
         'https://api.zarinpal.com/pg/v4/payment/request.json',
         params
       )
+
+      console.log('data1 => ', data)
 
       if (data.data.code == 100) {
         let newPayment = new Payment({
