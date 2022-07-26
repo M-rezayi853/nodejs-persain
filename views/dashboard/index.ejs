@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('../../components/validation-error.ejs') -%>
+
+    <h1>dashboard</h1>
+
+    <h2>hi <%= req.user.name %></h2>
+
+    <img
+      src="<%= req.user.img %>"
+      alt=""
+      style="width: 100px; border-radius: 50%"
+    />
+
+    <form
+      action="/dashboard/edituser"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input
+        type="text"
+        placeholder="name"
+        name="name"
+        value="<%= req.user.name %>"
+      />
+      <input type="file" name="img" />
+      <input type="submit" value="send" />
+    </form>
+
+    <h3>اعتبار کنونی شما <%= req.user.balance %></h3>
+
+    <form action="/dashboard/pay" method="post" style="border: 1px solid green">
+      <h2>اعتبار حساب کاربری خود را به مقدار دلخواه افزایش دهید</h2>
+      <input type="number" name="amount" placeholder="مبلغ دلخواه" />
+      <input type="submit" value="پرداخت" />
+    </form>
+
+    <a href="/logout">logout</a>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+body {
+  margin: 130px;
+  text-align: center;
+}
+
+h1 {
+  color: red;
+}
+
+table {
+  border: 1px solid rgb(125, 125, 125);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+td {
+  border: 1px solid rgb(125, 125, 125);
+  padding: 15px 30px;
+}
+
+form {
+  margin: 50px 0;
+}

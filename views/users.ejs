@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('../components/validation-error.ejs') -%>
+
+    <div>
+      <% if(message) { %>
+      <h4><%= message %></h4>
+      <% } %>
+    </div>
+
+    <div>
+      <form action="/user" method="post">
+        <input type="text" placeholder="id" name="id" />
+        <input type="text" placeholder="name" name="name" />
+        <input type="text" placeholder="email" name="email" />
+        <input type="text" placeholder="password" name="password" />
+        <input type="submit" />
+      </form>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>email</th>
+          <th>password</th>
+          <th>operation</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% users.forEach(user => { %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.password %></td>
+          <td>
+            <form action="/user/<%= user.id %>?method=delete" method="post">
+              <input type="submit" value="remove" />
+            </form>
+
+            <a href="/user/<%= user.id %>">update</a>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>
